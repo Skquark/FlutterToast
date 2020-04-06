@@ -14,10 +14,11 @@ class Toast {
       Color backgroundColor = const Color(0xAA000000),
       textStyle = const TextStyle(fontSize: 15, color: Colors.white),
       double backgroundRadius = 20,
-      Border border}) {
+      Border border,
+      List<BoxShadow> boxShadow}) {
     ToastView.dismiss();
     ToastView.createView(msg, context, duration, gravity, backgroundColor,
-        textStyle, backgroundRadius, border);
+        textStyle, backgroundRadius, border, boxShadow);
   }
 }
 
@@ -42,7 +43,8 @@ class ToastView {
       Color background,
       TextStyle textStyle,
       double backgroundRadius,
-      Border border) async {
+      Border border,
+      BoxShadow boxShadow) async {
     overlayState = Overlay.of(context);
 
     Paint paint = Paint();
@@ -61,6 +63,7 @@ class ToastView {
                     color: background,
                     borderRadius: BorderRadius.circular(backgroundRadius),
                     border: border,
+                    boxShadow: boxShadow,
                   ),
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
